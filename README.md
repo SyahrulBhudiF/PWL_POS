@@ -20,8 +20,11 @@
 > 4. 2021_08_19_000003_create_personal_access_tokens_table
 >`untuk membuat tabel personal_access_tokens yang digunakan untuk menyimpan data token personal access yang digunakan untuk mengatur token reset password dan lain sebagainya.`
 
-### 5. Secara default, file migrasi terdapat kode $table->timestamps();, apa tujuan/output dari fungsi tersebut?
+### 4. Secara default, file migrasi terdapat kode $table->timestamps();, apa tujuan/output dari fungsi tersebut?
 >Fungsi `$table->timestamps();` pada file migrasi Laravel bertujuan untuk secara otomatis menambahkan kolom `created_at` dan `updated_at` pada tabel database yang sedang dibuat, yang akan mencatat waktu pembuatan dan pembaruan setiap entri dalam tabel tersebut.
+
+### 5. Pada File Migrasi, terdapat fungsi $table->id(); Tipe data apa yang dihasilkan dari fungsi tersebut?
+>Tipe data yang dihasilkan adalah `BIGINT UNSIGNED`
 
 ### 6. Apa bedanya hasil migrasi pada table m_level, antara menggunakan $table->id(); dengan menggunakan $table->id('level_id'); ?
 >Perbedaan antara `$table->id();` dan `$table->id('level_id');` dalam hasil migrasi pada tabel m_level adalah penamaan kolom primary key yang dihasilkan. Hasil jika tanpa params adalah `id` sedangkan hasil `$table->id('level_id');` adalah `level_id`.
