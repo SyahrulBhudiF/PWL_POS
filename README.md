@@ -288,3 +288,29 @@ class UserController extends Controller
 terjadi dan beri penjelasan dalam laporan <br>
 ![alt text](/public/ss/4.png)<br>
 >Setelah dijalankan akan menampilkan error 404 karena menggunakan firstOrFail. Metode ini akan mencari record pertama apakah cocok dengan kondisi, jika tidak akan return error. Di kasus ini record pertama bukanlah manager9 sehingga error terjadi.
+
+### Praktikum 2.3 – Retreiving Aggregrates
+1.Ubah file controller dengan nama UserController.php dan ubah script seperti gambar di bawah ini
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
+class UserController extends Controller
+{
+    function index()
+    {
+        $user = User::where('level_id', '2')->count();
+        dd($user);
+        return view('user', ['data' => $user]);
+    }
+}
+```
+2. Hasil
+<br>![alt text](/public/ss/h.png)<br>
+>data tampil sesuai  dengan jumlah yg ada di database
+3.
