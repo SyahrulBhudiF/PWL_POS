@@ -238,3 +238,53 @@ class UserController extends Controller
 11. amati apa yang terjadi dan beri penjelasan dalam laporan <br>
 ![alt text](/public/ss/4.png)<br>
 >Akan menghasilkan error 404 karena data dengan id 20 tidak ditemukan
+
+### Praktikum 2.2 – Not Found Exceptions
+1. Ubah file controller dengan nama UserController.php dan ubah script seperti gambar
+di bawah ini
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
+class UserController extends Controller
+{
+    function index()
+    {
+        $user = User::findOrFail(1);
+        return view('user', ['data' => $user]);
+    }
+}
+```
+2. amati apa yang
+terjadi dan beri penjelasan dalam laporan <br>
+![alt text](/public/ss/d2.png)
+>Dijalankan findOrFail(1) yang akan mencari record berdasarkan primary keynya, di kasus ini 1. Jika tidak ditemukan atau fail akan return page 404.
+3. Ubah file controller dengan nama UserController.php dan ubah script seperti gambar
+di bawah ini
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
+class UserController extends Controller
+{
+    function index()
+    {
+        $user = User::where('username', 'manager9')->firstOrFail();
+        return view('user', ['data' => $user]);
+    }
+}
+```
+4. amati apa yang
+terjadi dan beri penjelasan dalam laporan <br>
+![alt text](/public/ss/4.png)<br>
+>Setelah dijalankan akan menampilkan error 404 karena menggunakan firstOrFail. Metode ini akan mencari record pertama apakah cocok dengan kondisi, jika tidak akan return error. Di kasus ini record pertama bukanlah manager9 sehingga error terjadi.
