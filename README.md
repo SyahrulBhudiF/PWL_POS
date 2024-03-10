@@ -498,3 +498,94 @@ laporan <br>
 ![alt text](/public/ss/dbb.png)<br>
 > Hasil seperti diatas, terdapat ID dan ada record baru di database. Dikarenakan fungsi save() digunakan untuk membuat record baru.
 
+### Praktikum 2.5 – Attribute Changes
+1. Ubah file controller dengan nama UserController.php dan ubah script seperti gambar
+di bawah ini
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
+class UserController extends Controller
+{
+    function index()
+    {
+        $user = User::create([
+            'username' => 'manager55',
+            'nama' => 'Manager Lima Lima',
+            'password' => Hash::make('12345'),
+            'level_id' => 2
+        ]);
+        $user->username = 'manager56';
+
+        $user->isDirty();
+        $user->isDirty('username');
+        $user->isDirty('nama');
+        $user->isDirty(['nama', 'username']);
+
+        $user->isClean();
+        $user->isClean('username');
+        $user->isClean('nama');
+        $user->isClean(['nama', 'username']);
+
+        $user->save();
+
+        $user->isDirty();
+        $user->isClean();
+
+        dd($user->isDirty());
+        return view('user', ['data' => $user]);
+    }
+}
+```
+2. Simpan kode program Langkah 1. Kemudian jalankan pada browser dan amati apa yang
+terjadi dan beri penjelasan dalam laporan <br>
+![alt text](/public/ss/56.png)<br>
+>Pada hasil run diatas, dilakukan penambahan data dan hasilnya berhasil sehingga bisa ditampilkan. Mengapa hasil pengecekan tidak muncul? Dikarenakan tidak adanya dump and die untuk menampilkan.<br>
+![alt text](/public/ss/dd.png)<br>
+>Terdapat dd($user->isDirty()); yang akan mengecek status $user apakah ada data yang berubah
+
+3. Ubah file controller dengan nama UserController.php dan ubah script seperti gambar di bawah ini
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
+class UserController extends Controller
+{
+    function index()
+    {
+        $user = User::create([
+            'username' => 'manager11',
+            'nama' => 'Manager11',
+            'password' => Hash::make('12345'),
+            'level_id' => 2
+        ]);
+        $user->username = 'manager12';
+
+        $user->wasChanged();
+        $user->wasChanged('username');
+        $user->wasChanged(['username', 'level_id']);
+        $user->wasChanged('name');
+        dd($user->wasChanged('nama'));
+
+        return view('user', ['data' => $user]);
+    }
+}
+```
+4. Simpan kode program Langkah 3. Kemudian jalankan pada browser dan amati apa yang
+terjadi dan beri penjelasan dalam laporan <br>
+![alt text](/public/ss/usr.png)<br>
+>Terdapat dd($user->wasChanged(['nama','username'])); yang akan mengecek status $user apakah ada data yang berubah pada bagian ‘nama’ dan ‘username’,menampilkan hasilnya dan akan menghentikan progam (dump and die).<br>
+![alt text](/public/ss/usr2.png)<br>
+> Pada hasil run diatas dilakukan penambahan data, hasilnya berhasil sehingga bisa ditampilkan. Hasil pengecekan tidak muncuk karena tidak adanya dump and die untuk menampilkan hasil.
+
+>Sedangkan perbedaan isDirty dan wasChanged sendiri adalah kondisi dijalankannya. isDirty akan melakukan pengecekan sebelum dilakukan save. Sedangkan wasChanged akan melakukan pengecekan setelah dilakukan save.
