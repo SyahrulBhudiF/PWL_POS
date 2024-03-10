@@ -589,3 +589,394 @@ terjadi dan beri penjelasan dalam laporan <br>
 > Pada hasil run diatas dilakukan penambahan data, hasilnya berhasil sehingga bisa ditampilkan. Hasil pengecekan tidak muncuk karena tidak adanya dump and die untuk menampilkan hasil.
 
 >Sedangkan perbedaan isDirty dan wasChanged sendiri adalah kondisi dijalankannya. isDirty akan melakukan pengecekan sebelum dilakukan save. Sedangkan wasChanged akan melakukan pengecekan setelah dilakukan save.
+
+### Praktikum 2.6 – Create, Read, Update, Delete (CRUD)
+1. Buka file view pada user.blade.php dan buat scritpnya menjadi seperti di bawah ini
+```php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Level</title>
+</head>
+<body>
+    <h1>Data Level Pengguna</h1>
+    <table border="1" cellpadding="2" cellspacing="0">
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Nama</th>
+            <th>ID Level Pengguna</th>
+            <th>Aksi</th>
+        </tr>
+        @foreach ($data as $d)
+        <tr>
+            <td>{{$d->user_id}}</td>
+            <td>{{$d->username}}</td>
+            <td>{{$d->nama}}</td>
+            <td>{{$d->level_id}}</td>
+            <td>
+                <a href="/user/ubah/{{$d->user_id}}">Ubah</a> |
+                <a href="/user/hapus/{{$d->user_id}}">Hapus</a>
+            </td>
+        </tr>
+        @endforeach
+    </table>
+</body>
+</html>
+```
+2. Buka file controller pada UserController.php dan buat scriptnya untuk read menjadi
+seperti di bawah ini
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
+class UserController extends Controller
+{
+    function index()
+    {
+        $user = User::all();
+        return view('user', ['data' => $user]);
+    }
+}
+```
+3. Hasil<br>
+![alt text](/public/ss/cr.png)<br>
+> Yang terjadi adalah data user tampil semua
+4. Langkah berikutnya membuat create atau tambah data user dengan cara bikin file baru
+pada view dengan nama user_tambah.blade.php dan buat scriptnya menjadi seperti di
+bawah ini
+```php
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tambah</title>
+</head>
+
+<body>
+    <h1>Form Tambah data User</h1>
+    <Form method="post" action="{{ url('/user/tambah_simpan') }}">
+
+        {{ csrf_field() }}
+        <label>Username</label>
+        <input type="text" name="username" placeholder="Masukkan Username">
+        <br>
+
+        <label>Nama</label>
+        <input type="text" name="nama" placeholder="Masukkan Nama">
+        <br>
+
+        <label>Password</label>
+        <input type="password" name="password" placeholder="Masukkan Password">
+        <br>
+
+        <label>Level ID</label>
+        <input type="number" name="level_id" placeholder="Masukkan Id Level">
+        <br><br>
+
+        <input type="submit" class="btn btn-success" value="Simpan">
+
+    </Form>
+
+</body>
+
+</html>
+```
+5. Tambahkan script pada routes dengan nama file web.php. Tambahkan seperti gambar di
+bawah ini
+```php
+Route::get('/user/tambah', [UserController::class, 'tambah']);
+```
+6. Tambahkan script pada controller dengan nama file UserController.php. Tambahkan
+script dalam class dan buat method baru dengan nama tambah dan diletakan di bawah
+method index seperti gambar di bawah ini
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
+class UserController extends Controller
+{
+    function index()
+    {
+        $user = User::all();
+        return view('user', ['data' => $user]);
+    }
+
+    function tambah() {
+        return view('user_tambah');
+    }
+}
+```
+7. Simpan kode program Langkah 4 s/d 6. Kemudian jalankan pada browser dan klik link
+“+ Tambah User” amati apa yang terjadi dan beri penjelasan dalam laporan <br>
+![alt text](/public/ss/ad.png)<br>
+![alt text](/public/ss/nt.png)<br>
+>Setelah mengisi form dan klik simpan, akan terjadi error karena belum ditambahkan fungsi untuk menyimpan inputan dan belum ada routing juga.
+
+8. Tambahkan script pada routes dengan nama file web.php. Tambahkan seperti gambar di
+bawah ini
+```php
+Route::post('/user/tambah_simpan', [UserController::class, 'tambah_simpan']);
+```
+
+9. Tambahkan script pada controller dengan nama file UserController.php. Tambahkan
+script dalam class dan buat method baru dengan nama tambah_simpan dan diletakan di
+bawah method tambah seperti gambar di bawah ini
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
+class UserController extends Controller
+{
+    function index()
+    {
+        $user = User::all();
+        return view('user', ['data' => $user]);
+    }
+
+    function tambah()
+    {
+        return view('user_tambah');
+    }
+
+    function tambah_simpan(Request $request)
+    {
+        User::create([
+            'username' => $request->username,
+            'nama' => $request->nama,
+            'password' => Hash::make($request->password),
+            'level_id' => $request->level_id,
+        ]);
+
+        return redirect('/user');
+    }
+}
+```
+
+10. Simpan kode program Langkah 8 dan 9. Kemudian jalankan link
+localhost:8000/user/tambah atau localhost/PWL_POS/public/user/tambah pada
+browser dan input formnya dan simpan, kemudian amati apa yang terjadi dan beri
+penjelasan dalam laporan <br>
+![alt text](/public/ss/tb.png)<br>
+![alt text](/public/ss/mn.png)<br>
+![alt text](/public/ss/hs.png)<br>
+> Hasil nya adalah data yang telah dimasukkan kedalam form bisa disimpan kedalam database dan ditampilkan kembali ke view. Data form dikirim ke UserController lalu ditangkap oleh variabel $request yang berada dalam fungsi tambah_simpan lalu didalam fungsi tersebut akan dilakukan create data kedalam database
+
+11. Langkah berikutnya membuat update atau ubah data user dengan cara bikin file baru
+pada view dengan nama user_ubah.blade.php dan buat scriptnya menjadi seperti di
+bawah ini
+```php
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ubah</title>
+</head>
+
+<body>
+
+    <body>
+        <h1>Form ubah data user</h1>
+        <a href="/user">Kembali</a> <br><br>
+
+        <form method="post" action="/user/ubah_simpan/{{ $data->user_id }}">
+            {{ csrf_field() }}
+            {{ method_field('PUT') }}
+            <label>Username</label>
+            <input type="text" name="username" placeholder="Masukkan Username" value="{{ $data->username }}">
+            <br>
+
+            <label>Nama</label>
+            <input type="text" name="nama" placeholder="Masukkan Nama" value="{{ $data->nama }}">
+            <br>
+
+            <label>Password</label>
+            <input type="password" name="password" placeholder="Masukkan Password" value="{{ $data->password }}">
+            <br>
+
+            <label>Level ID</label>
+            <input type="number" name="level_id" placeholder="Masukkan Id Level" value="{{ $data->level_id }}">
+            <br><br>
+
+            <input type="submit" class="btn btn-success" value="Simpan">
+
+        </form>
+    </body>
+</body>
+
+</html>
+```
+12. Tambahkan script pada routes dengan nama file web.php. Tambahkan seperti gambar di
+bawah ini
+```php
+Route::get('/user/ubah/{id}', [UserController::class, 'ubah']);
+```
+13. Tambahkan script pada controller dengan nama file UserController.php. Tambahkan
+script dalam class dan buat method baru dengan nama ubah dan diletakan di bawah
+method tambah_simpan seperti gambar di bawah ini
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
+class UserController extends Controller
+{
+    function index()
+    {
+        $user = User::all();
+        return view('user', ['data' => $user]);
+    }
+
+    function tambah()
+    {
+        return view('user_tambah');
+    }
+
+    function tambah_simpan(Request $request)
+    {
+        User::create([
+            'username' => $request->username,
+            'nama' => $request->nama,
+            'password' => Hash::make($request->password),
+            'level_id' => $request->level_id,
+        ]);
+
+        return redirect('/user');
+    }
+
+    function ubah($id)
+    {
+        $user = User::find($id);
+        return view('user_ubah', ['data' => $user]);
+    }
+}
+```
+14. Simpan kode program Langkah 11 sd 13. Kemudian jalankan pada browser dan klik
+link “Ubah” amati apa yang terjadi dan beri penjelasan dalam laporan <br>
+![alt text](/public/ss/u.png)<br>
+> Yang terjadi ketika klik ubah adalah kita dipindahkan ke view ubah yang memiliki form untuk mengubah data user
+
+15. Tambahkan script pada routes dengan nama file web.php. Tambahkan seperti gambar di
+bawah ini
+```php
+Route::put('/user/ubah_simpan/{id}', [UserController::class, 'ubah_simpan']);
+```
+>di praktikum menggunakan get tetapi di view menggunakan put jadi saya ganti put agar tidak error
+
+16. Tambahkan script pada controller dengan nama file UserController.php. Tambahkan
+script dalam class dan buat method baru dengan nama ubah_simpan dan diletakan di
+bawah method ubah seperti gambar di bawah ini
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
+class UserController extends Controller
+{
+    function index()
+    {
+        $user = User::all();
+        return view('user', ['data' => $user]);
+    }
+
+    function tambah()
+    {
+        return view('user_tambah');
+    }
+
+    function tambah_simpan(Request $request)
+    {
+        User::create([
+            'username' => $request->username,
+            'nama' => $request->nama,
+            'password' => Hash::make($request->password),
+            'level_id' => $request->level_id,
+        ]);
+
+        return redirect('/user');
+    }
+
+    function ubah($id)
+    {
+        $user = User::find($id);
+        return view('user_ubah', ['data' => $user]);
+    }
+
+    function ubah_simpan($id,Request $request) {
+        $user =User::find($id);
+
+        $user->username = $request->username;
+        $user->nama = $request->nama;
+        $user->password = Hash::make($request->password);
+        $user->level_id = $request->level_id;
+
+        $user->save();
+
+        return redirect('/user');
+    }
+}
+```
+
+17. Simpan kode program Langkah 15 dan 16. Kemudian jalankan link
+localhost:8000/user/ubah/1 atau localhost/PWL_POS/public/user/ubah/1 pada
+browser dan ubah input formnya dan klik tombol ubah, kemudian amati apa yang terjadi
+dan beri penjelasan dalam laporan <br>
+![alt text](/public/ss/ubah.png)<br>
+![alt text](/public/ss/ubh.png)<br>
+> Hasilnya sesuai dengan harapan yaitu manager24 berganti menjadi manager25
+
+18. Berikut untuk langkah delete . Tambahkan script pada routes dengan nama file web.php.
+Tambahkan seperti gambar di bawah ini <br>
+```php
+Route::get('/user/hapus/{id}', [UserController::class, 'hapus']);
+```
+
+19. Tambahkan script pada controller dengan nama file UserController.php. Tambahkan
+script dalam class dan buat method baru dengan nama hapus dan diletakan di bawah
+method ubah_simpan seperti gambar di bawah ini
+```php
+    function hapus($id) {
+        $user = User::find($id);
+        $user->delete();
+
+        return redirect('/user');
+    }
+```
+
+20. Simpan kode program Langkah 18 dan 19. Kemudian jalankan pada browser dan klik
+tombol hapus, kemudian amati apa yang terjadi dan beri penjelasan dalam laporan<br>
+![alt text](/public/ss/ubh.png)<br>
+![alt text](/public/ss/mng.png)<br>
+>Hasilnya sesuai harapan yaitu manager25 telah berhasil dihapus
