@@ -10,8 +10,10 @@ class UserController extends Controller
 {
     function index()
     {
-        $user = User::all();
+
+        $user = User::with('level')->get();
         return view('user', ['data' => $user]);
+
     }
 
     function tambah()

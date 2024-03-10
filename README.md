@@ -980,3 +980,47 @@ tombol hapus, kemudian amati apa yang terjadi dan beri penjelasan dalam laporan<
 ![alt text](/public/ss/ubh.png)<br>
 ![alt text](/public/ss/mng.png)<br>
 >Hasilnya sesuai harapan yaitu manager25 telah berhasil dihapus
+
+### Praktikum 2.7 – Relationships
+1. Buka file model pada UserModel.php dan tambahkan scritpnya menjadi seperti di bawah
+ini
+```php
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Monolog\Level;
+
+class User extends Model
+{
+    use HasFactory;
+
+    protected $table = 'm_user';
+    protected $primaryKey = 'user_id';
+
+    protected $fillable = ['level_id', 'username', 'nama', 'password'];
+
+    function level() {
+        return $this->belongsTo(Level::class);
+    }
+}
+```
+2. Buka file controller pada UserController.php dan ubah method script menjadi seperti
+di bawah ini
+```php
+function index()
+    {
+
+        $user = User::with('level')->get();
+        return view('user', ['data' => $user]);
+
+    }
+```
+3. Simpan kode program Langkah 2. Kemudian jalankan link pada browser, kemudian
+amati apa yang terjadi dan beri penjelasan dalam laporan<br>
+![alt text](/public/ss/1.png)<br>
+> Pada langkah ini akan ditampilkan hubungan one to one antara UserModel dengan Model Level menggunakan dd(dump and die). Terdapat 11 item yang menunjukkan hubungan kedua model.
+
+![alt text](/public/ss/ss1.png)<br>

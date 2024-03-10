@@ -20,11 +20,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Route untuk level
 Route::get('/level', [LevelController::class, 'index']);
+
+// Route untuk kategori
 Route::get('/kategori', [KategoriController::class, 'index']);
-Route::get('/user', [UserController::class, 'index']);
-Route::get('/user/tambah', [UserController::class, 'tambah']);
-Route::post('/user/tambah_simpan', [UserController::class, 'tambah_simpan']);
-Route::get('/user/ubah/{id}', [UserController::class, 'ubah']);
-Route::put('/user/ubah_simpan/{id}', [UserController::class, 'ubah_simpan']);
-Route::get('/user/hapus/{id}', [UserController::class, 'hapus']);
+
+// Prefix untuk route terkait pengguna (user)
+Route::prefix('/user')->group(function () {
+    Route::get('/', [UserController::class, 'index']);
+    Route::get('/tambah', [UserController::class, 'tambah']);
+    Route::post('/tambah_simpan', [UserController::class, 'tambah_simpan']);
+    Route::get('/ubah/{id}', [UserController::class, 'ubah']);
+    Route::put('/ubah_simpan/{id}', [UserController::class, 'ubah_simpan']);
+    Route::get('/hapus/{id}', [UserController::class, 'hapus']);
+});
