@@ -8,5 +8,6 @@
 <a class="btn btn-Primary" href="/kategori/create">+ Tambah Kategori</a>
 ```
 ![alt text](/public/ss/js51.png)
+## 2. Tambahkan menu untuk halaman manage kategori, di daftar menu navbar
 
 
