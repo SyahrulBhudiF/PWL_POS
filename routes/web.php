@@ -24,7 +24,10 @@ Route::get('/', function () {
 Route::get('/level', [LevelController::class, 'index']);
 
 // Route untuk kategori
-Route::get('/kategori', [KategoriController::class, 'index']);
+
+Route::prefix('/kategori')->group(function (){
+    Route::get('/', [KategoriController::class, 'index']);
+});
 
 // Prefix untuk route terkait pengguna (user)
 Route::prefix('/user')->group(function () {
