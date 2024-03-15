@@ -14,4 +14,8 @@
 ![alt text](/public/ss/js53.2.png)<br>
 - Hasil
 ![alt text](/public/ss/js53.3.png)<br>
-
+## 4. Tambahkan action delete di datatables serta controllernya
+- halaman awal<br>
+![alt text](/public/ss/js54.1.png)
+- Hasil <br>
+![alt text](/public/ss/js54.2.png)

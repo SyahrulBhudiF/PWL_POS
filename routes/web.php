@@ -31,6 +31,7 @@ Route::prefix('/kategori')->group(function (){
     Route::post('/', [KategoriController::class, 'store']);
     Route::get('/edit/{id}', [KategoriController::class, 'edit'])->name('kategori.edit');
     Route::put('/update/{id}', [KategoriController::class, 'update'])->name('kategori.update');
+    Route::get('/delete/{id}', [KategoriController::class, 'destroy'])->name('kategori.delete');
 });
 
 // Prefix untuk route terkait pengguna (user)

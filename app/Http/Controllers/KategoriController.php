@@ -38,8 +38,7 @@ class KategoriController extends Controller
      * Return to edit page
      */
     function edit($id) {
-        $kategori =Kategori::find($id);
-        return view('kategori.edit', ['data' => $kategori]);
+        return view('kategori.edit', ['data' => Kategori::find($id)]);
     }
 
     /**
@@ -52,6 +51,12 @@ class KategoriController extends Controller
         $kategori->kategori_nama = $request->kategori_nama;
 
         $kategori->save();
+        return redirect('/kategori');
+    }
+
+    function destroy($id) {
+        Kategori::find($id)->delete();
+
         return redirect('/kategori');
     }
 }

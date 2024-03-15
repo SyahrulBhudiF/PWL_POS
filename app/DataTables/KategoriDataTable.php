@@ -25,7 +25,10 @@ class KategoriDataTable extends DataTable
             ->addColumn('Edit', function ($row) {
                 return '<a class="edit btn btn-primary btn-sm" href="' . route('kategori.edit', $row->kategori_id) . '">edit</a>';
             })
-            ->rawColumns(['Edit'])
+            ->addColumn('Delete', function ($row) {
+                return '<a class="edit btn btn-danger btn-sm" href="' . route('kategori.delete', $row->kategori_id) . '">delete</a>';
+            })
+            ->rawColumns(['Edit', 'Delete'])
             ->setRowId('id');
     }
 
@@ -71,6 +74,13 @@ class KategoriDataTable extends DataTable
             Column::make('created_at'),
             Column::make('updated_at'),
             Column::computed('Edit')
+                ->exportable(false)
+                ->printable(false)
+                ->width(60)
+                ->addClass(
+                    'text-center'
+                ),
+            Column::computed('Delete')
                 ->exportable(false)
                 ->printable(false)
                 ->width(60)
