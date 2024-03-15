@@ -4,17 +4,14 @@
 > Kelas : TI-2F
 
 ## 1. Tambahkan button Add di halam manage kategori, yang mengarah ke create kategori baru
-```php
-<a class="btn btn-Primary" href="/kategori/create">+ Tambah Kategori</a>
-```
 ![alt text](/public/ss/js51.png)
 ## 2. Tambahkan menu untuk halaman manage kategori, di daftar menu navbar
-```php
-        [
-            'text' => 'Manage Kategori',
-            'url' => 'kategori',
-            'icon' => 'far fa-fw fa-folder',
-        ],
-```
 ![alt text](/public/ss/js52.png)
+## 3. Tambahkan action edit di datatables dan buat halaman edit serta controllernya
+- halaman awal<br>
+![alt text](/public/ss/js53.1.png)<br>
+- Edit
+![alt text](/public/ss/js53.2.png)<br>
+- Hasil
+![alt text](/public/ss/js53.3.png)<br>
 
