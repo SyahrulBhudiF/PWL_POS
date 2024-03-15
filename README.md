@@ -9,5 +9,12 @@
 ```
 ![alt text](/public/ss/js51.png)
 ## 2. Tambahkan menu untuk halaman manage kategori, di daftar menu navbar
-
+```php
+        [
+            'text' => 'Manage Kategori',
+            'url' => 'kategori',
+            'icon' => 'far fa-fw fa-folder',
+        ],
+```
+![alt text](/public/ss/js52.png)
 
