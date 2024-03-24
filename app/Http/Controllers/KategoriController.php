@@ -30,7 +30,7 @@ class KategoriController extends Controller
      */
     function store(Request $request) {
         $validator = Validator::make($request->all(), [
-            'kodeKategori' => 'required',
+            'kodeKategori' => 'bail|required|unique:posts|max:255',
             'namaKategori' => 'required',
         ]);
 

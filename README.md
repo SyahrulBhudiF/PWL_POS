@@ -9,7 +9,7 @@
 ![alt text](./public/ss/js6.png)<br>
 ![alt text](./public/ss/js6.1.png)<br>
 
-<!-- ## B. VALIDASI PADA SERVER
+## B. VALIDASI PADA SERVER
 
 -   Validasi <br>
 
@@ -34,5 +34,47 @@
     }
 ```
 
-- Tulis perbedaan penggunaan validate dengan validateWithBag!
->Metode validate() langsung menangani validasi data dari permintaan dan mengembalikan respons kesalahan yang telah ditetapkan jika validasi gagal, sedangkan metode validateWithBag() memungkinkan untuk menetapkan pesan kesalahan ke "tas" yang dapat diatur sendiri, memberikan lebih banyak kendali atas bagaimana pesan kesalahan tersebut ditampilkan atau diproses. -->
+-   Tulis perbedaan penggunaan validate dengan validateWithBag!
+
+    > Metode validate() langsung menangani validasi data dari permintaan dan mengembalikan respons kesalahan yang telah ditetapkan jika validasi gagal, sedangkan metode validateWithBag() memungkinkan untuk menetapkan pesan kesalahan ke "tas" yang dapat diatur sendiri, memberikan lebih banyak kendali atas bagaimana pesan kesalahan tersebut ditampilkan atau diproses.
+
+-   tetapkan bail aturan ke atribut: coba sesuaikan dengan field pada m_kategori, apa yang terjadi?
+
+```php
+ $validator = Validator::make($request->all(), [
+            'kodeKategori' => 'bail|required|unique:posts|max:255',
+            'namaKategori' => 'required',
+        ]);
+```
+
+> Dengan menetapkan aturan bail pada atribut, jika validasi pada atribut tersebut gagal, Laravel akan menghentikan proses validasi lebih lanjut untuk atribut lainnya dan langsung mengembalikan pesan kesalahan untuk atribut yang gagal tersebut.
+
+-   Pada view/create.blade.php tambahkan code berikut agar ketika validasi gagal, kita
+    dapat menampilkan pesan kesalahan dalam tampilan: <br>
+
+```php
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+```
+
+Hasil <br>
+![alt text](./public/ss/js6.3.png) <br>
+
+-   Pada view/create.blade.php tambahkan dan coba running code berikut :<br>
+
+```php
+<input type="text" class="@error('kodeKategori') is-invalid @enderror form-control"
+id="kodeKategori" name="kodeKategori" placeholder="untuk barang, contoh : AOC0">
+
+@error('kodeKategori')
+    <div class="alert alert-danger">{{ $message }}</div>
+@enderror
+```
+![alt text](./public/ss/js6.5.png)<br>
