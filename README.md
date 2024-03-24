@@ -77,4 +77,7 @@ id="kodeKategori" name="kodeKategori" placeholder="untuk barang, contoh : AOC0">
     <div class="alert alert-danger">{{ $message }}</div>
 @enderror
 ```
+
 ![alt text](./public/ss/js6.5.png)<br>
+
+## C. FORM REQUEST VALIDATION
