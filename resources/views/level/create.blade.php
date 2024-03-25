@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 {{-- Customize layout sections --}}
-@section('subtitle', 'Kategori')
-@section('content_header_title', 'Kategori')
+@section('subtitle', 'Level')
+@section('content_header_title', 'Level')
 @section('content_header_subtitle', 'Create')
 
 {{-- Content body: main page content --}}
@@ -10,25 +10,25 @@
     <div class="container">
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">Buat Kategori baru</h3>
+                <h3 class="card-title">Buat Level baru</h3>
             </div>
 
-            <form method="post" action="../kategori">
+            <form method="post" action="../level">
                 {{ csrf_field() }}
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="kategori_kode">Kode Kategori</label>
-                        <input type="text" class=" form-control" id="kategori_kode" name="kategori_kode"
-                            placeholder="untuk barang, contoh : AOC0">
-                        @error('kategori_kode')
+                        <label for="level_kode">Kode Level</label>
+                        <input type="text" class=" form-control" id="level_kode" name="level_kode"
+                            placeholder="Contoh : Mng-jkt">
+                        @error('level_kode')
                             <div class="alert alert-danger mt-2">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="kategori_nama">Nama Kategori</label>
-                        <input type="text" class="form-control" id="kategori_nama" name="kategori_nama"
-                            placeholder="Nama">
-                        @error('kategori_nama')
+                        <label for="level_nama">Nama Level</label>
+                        <input type="text" class="form-control" id="level_nama" name="level_nama"
+                            placeholder="Contoh : Manager Jakarta">
+                        @error('level_nama')
                             <div class="alert alert-danger mt-2">{{ $message }}</div>
                         @enderror
                     </div>

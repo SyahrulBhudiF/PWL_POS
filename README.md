@@ -81,3 +81,35 @@ id="kodeKategori" name="kodeKategori" placeholder="untuk barang, contoh : AOC0">
 ![alt text](./public/ss/js6.5.png)<br>
 
 ## C. FORM REQUEST VALIDATION
+- StorePostRequest
+```php
+<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class StorePostRequest extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     */
+    public function authorize(): bool
+    {
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     */
+    public function rules(): array
+    {
+        return [
+            'kodeKategori' => 'required',
+            'namaKategori' => 'required',
+        ];
+    }
+}
+```
