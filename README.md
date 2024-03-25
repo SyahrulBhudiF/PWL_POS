@@ -81,7 +81,9 @@ id="kodeKategori" name="kodeKategori" placeholder="untuk barang, contoh : AOC0">
 ![alt text](./public/ss/js6.5.png)<br>
 
 ## C. FORM REQUEST VALIDATION
-- StorePostRequest
+
+-   StorePostRequest
+
 ```php
 <?php
 
@@ -113,3 +115,20 @@ class StorePostRequest extends FormRequest
     }
 }
 ```
+
+-   Hasil
+    ![alt text](./public/ss/form.png)<br>
+
+## D. CRUD(create, read, update, delete
+
+-   Halaman awal m_user<br>
+    ![alt text](./public/ss/m_user.png)
+-   Halaman input user<br>
+    ![alt text](./public/ss/inputUser.png)
+-   Halaman show user<br>
+    ![alt text](./public/ss/showUser.png)
+-   Halaman edit user<br>
+    ![alt text](./public/ss/editUser.png)
+-   Notif delete user<br>
+    ![alt text](./public/ss/destroyUser.png)
+

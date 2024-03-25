@@ -11,11 +11,13 @@ class User extends Model
     use HasFactory;
 
     protected $table = 'm_user';
+    public $timestamps = false;
     protected $primaryKey = 'user_id';
 
-    protected $fillable = ['level_id', 'username', 'nama', 'password'];
+    protected $fillable = ['user_id', 'level_id', 'username', 'nama', 'password'];
 
-    function level(): BelongsTo {
+    function level(): BelongsTo
+    {
         return $this->belongsTo(Level::class, 'level_id', 'level_id');
     }
 }
