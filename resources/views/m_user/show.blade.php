@@ -26,6 +26,18 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
+                <strong>Level Kode:</strong>
+                {{ $useri->level->level_kode }}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Level Nama:</strong>
+                {{ $useri->level->level_nama }}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
                 <strong>Username:</strong>
                 {{ $useri->username }}
             </div>

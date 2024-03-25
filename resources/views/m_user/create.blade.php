@@ -41,6 +41,12 @@
                 <input type="password" name="password" class="form-control" placeholder="Masukkan password"></input>
             </div>
         </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Level id:</strong>
+                <input type="number" name="level_id" class="form-control" placeholder="Masukkan Level Id">
+            </div>
+        </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
             <button type="submit" class="btn btn-primary">Submit</button>
         </div>

@@ -35,15 +35,14 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Level_id:</strong>
-                    <input type="text" name="levelid" value="{{ $useri->level_id }}" class="form-control"
+                    <input type="number" name="level_id" value="{{ $useri->level_id }}" class="form-control"
                         placeholder="Masukkan level">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Username:</strong>
-                    <input type="text" value= "{{ $useri->username }}" class="form-
-            control" name="username"
+                    <input type="text" value= "{{ $useri->username }}" class="form-control" name="username"
                         placeholder="Masukkan Nomor username"">
                 </div>
             </div>

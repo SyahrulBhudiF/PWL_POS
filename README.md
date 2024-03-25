@@ -132,3 +132,11 @@ class StorePostRequest extends FormRequest
 -   Notif delete user<br>
     ![alt text](./public/ss/destroyUser.png)
 
+## Tugas
+
+1. Coba tampilkan level_id pada halaman web tersebut dimana field ini merupakan foreign key
+   ![alt text](./public/ss/61.png)<br>
+   ![alt text](./public/ss/61.1.png)<br>
+   ![alt text](./public/ss/61.2.png)<br>
+2. Modifikasi dengan tema/ template kesukaan Anda
+3. Apa fungsi $request->validate, $error dan alert yang ada pada halaman CRUD tersebut
