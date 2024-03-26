@@ -1,55 +1,59 @@
-@extends('m_user/template')
+@extends('layouts.app')
+@section('subtitle', 'User')
+@section('content_header_title', 'Create')
+@section('content_header_subtitle', 'User')
 @section('content')
-    <div class="row mt-5 mb-5">
-        <div class="col-lg-12 margin-tb">
-            <div class="float-left">
-                <h2>Membuat Daftar User</h2>
+    <div class="container">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Buat User baru</h3>
             </div>
-            <div class="float-right">
-                <a class="btn btn-secondary" href="{{ route('m_user.index') }}">
-                    Kembali</a>
+            <div class="m-3">
+                <a class="btn btn-secondary" href="{{ url('/m_user') }}">Kembali</a>
             </div>
+            <form method="post" action="../m_user">
+                {{ csrf_field() }}
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" class=" form-control" id="username" name="username"
+                            placeholder="Contoh : Adm1">
+                        @error('username')
+                            <div class="alert alert-danger mt-2">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password"
+                            placeholder="Contoh : *******">
+                        @error('password')
+                            <div class="alert alert-danger mt-2">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nama">Nama</label>
+                        <input type="text" class="form-control" id="nama" name="nama"
+                            placeholder="Contoh : Administrator 1">
+                        @error('nama')
+                            <div class="alert alert-danger mt-2">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label for="level_id">Level id</label>
+                        <input type="number" class="form-control" id="level_id" name="level_id" placeholder="Contoh : 1">
+                        @error('level_id')
+                            <div class="alert alert-danger mt-2">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
         </div>
+        </form>
     </div>
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <strong>Ops</strong> Input gagal<br><br>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-    <form action="{{ route('m_user.store') }}" method="POST">
-        @csrf
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Username:</strong>
-                <input type="text" name="username" class="form-control" placeholder="Masukkan username"></input>
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>nama:</strong>
-                <input type="text" name="nama" class="form-control" placeholder="Masukkan nama"></input>
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Password:</strong>
-                <input type="password" name="password" class="form-control" placeholder="Masukkan password"></input>
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Level id:</strong>
-                <input type="number" name="level_id" class="form-control" placeholder="Masukkan Level Id">
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
-        </div>
-    </form>
 @endsection

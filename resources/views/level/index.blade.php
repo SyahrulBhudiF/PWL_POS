@@ -11,7 +11,7 @@
         <div class="card">
             <div class="card-header">Manage Level</div>
             <div class="card-body">
-                {{ $dataTable->table() }}`
+                {{ $dataTable->table() }}
                 <a class="btn btn-Primary" href="/level/create">+ Add Level</a>
             </div>
         </div>

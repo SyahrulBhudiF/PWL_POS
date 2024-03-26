@@ -1,58 +1,43 @@
-@extends('m_user/template')
+@extends('layouts.app')
+@section('subtitle', 'User')
+@section('content_header_title', 'Show')
+@section('content_header_subtitle', 'User')
 @section('content')
-    <div class="row mt-5 mb-5">
-        <div class="col-lg-12 margin-tb">
-            <div class="float-left">
-                <h2> Show User</h2>
-            </div>
-            <div class="float-right">
+    <div class="container">
+        <div class="card">
+            <div class="card-header">Edit Level</div>
+            <div class="card-body">
                 <a class="btn btn-secondary" href="{{ route('m_user.index') }}">
                     Kembali</a>
             </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>User_id:</strong>
-                {{ $useri->user_id }}
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Level_id:</strong>
-                {{ $useri->level_id }}
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Level Kode:</strong>
-                {{ $useri->level->level_kode }}
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Level Nama:</strong>
-                {{ $useri->level->level_nama }}
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Username:</strong>
-                {{ $useri->username }}
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Nama:</strong>
-                {{ $useri->nama }}
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Password:</strong>
-                {{ $useri->password }}
-            </div>
+            <di>
+                <table class="table table-bordered">
+                    <tr>
+                        <td><strong>User_id:</strong></td>
+                        <td>{{ $useri->user_id }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Level_id:</strong></td>
+                        <td>{{ $useri->level_id }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Level Kode:</strong></td>
+                        <td>{{ $useri->level->level_kode }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Level Nama:</strong></td>
+                        <td>{{ $useri->level->level_nama }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Username:</strong></td>
+                        <td>{{ $useri->username }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nama:</strong></td>
+                        <td>{{ $useri->nama }}</td>
+                    </tr>
+                </table>
+            </di v>
         </div>
     </div>
 @endsection

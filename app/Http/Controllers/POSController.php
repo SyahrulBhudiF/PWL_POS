@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\UserDataTable;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -10,10 +11,9 @@ class POSController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(UserDataTable $dataTable)
     {
-        $useri = User::all();
-        return view('m_user.index', compact('useri'))->with('i');
+        return $dataTable->render('m_user.index');
     }
 
     /**
@@ -34,6 +34,8 @@ class POSController extends Controller
             'user_id' => 'max 20',
             'username' => 'required',
             'nama' => 'required',
+            'password' => 'required',
+            'level_id' => 'required'
         ]);
 
         //fungsi eloquent untuk menambah data
@@ -83,7 +85,7 @@ class POSController extends Controller
      */
     public function destroy(string $id)
     {
-        $useri = User::findOrFail($id)->delete();
+        User::findOrFail($id)->delete();
         return \redirect()->route('m_user.index')
             ->with('success', 'data Berhasil Dihapus');
     }

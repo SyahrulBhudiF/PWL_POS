@@ -139,4 +139,16 @@ class StorePostRequest extends FormRequest
    ![alt text](./public/ss/61.1.png)<br>
    ![alt text](./public/ss/61.2.png)<br>
 2. Modifikasi dengan tema/ template kesukaan Anda
+
+    > Saya menyesuaikan dengan tema awal dari AdminLTE
+
+    - Home
+      ![alt text](./public/ss/usr1.png)
+    - Add
+      ![alt text](./public/ss/addusr.png)
+    - Show
+      ![alt text](./public/ss/show.png)
+    - Edit
+      ![alt text](./public/ss/editusr.png)
+
 3. Apa fungsi $request->validate, $error dan alert yang ada pada halaman CRUD tersebut
