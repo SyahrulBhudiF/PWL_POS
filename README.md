@@ -152,3 +152,21 @@ class StorePostRequest extends FormRequest
       ![alt text](./public/ss/editusr.png)
 
 3. Apa fungsi $request->validate, $error dan alert yang ada pada halaman CRUD tersebut
+
+    - $request->validate:
+      Fungsi ini digunakan untuk memvalidasi input data yang dikirimkan melalui formulir. Fungsi ini menerima beberapa parameter dalam bentuk array assoc, yaitu:
+
+        - Nama field: Nama field yang ingin divalidasi.
+        - Rules: Aturan validasi yang ingin diterapkan. Aturan validasi dapat berupa:
+            - required: Memastikan field tidak kosong.
+            - tipe data: String|Number|Bool.
+            - numeric: Memastikan field berisi angka.
+            - min: Memastikan nilai field minimal sama dengan nilai yang ditentukan.
+            - max: Memastikan nilai field maksimal sama dengan nilai yang ditentukan.
+
+    - $error:
+      Variabel $error merupakan return dari validate ketika nilai yang di validate salah atau tidak sesuai dengan rules yang diberikan
+    - alert:
+      Fungsi ini digunakan untuk menampilkan pesan kepada pengguna. Fungsi ini menerima dua parameter, yaitu:
+        - Tipe pesan: Tipe pesan dapat berupa success, error, warning, atau info.
+        - Message (Pesan): Pesan yang ingin ditampilkan kepada pengguna.
