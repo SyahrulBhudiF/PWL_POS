@@ -22,7 +22,7 @@ Route::get('/', [WelcomeController::class, 'index']);
 
 
 // Route untuk kategori
-Route::prefix('/kategori')->group(function (){
+Route::prefix('/kategori')->group(function () {
     Route::get('/', [KategoriController::class, 'index']);
     Route::get('/create', [KategoriController::class, 'create']);
     Route::post('/', [KategoriController::class, 'store']);
@@ -34,11 +34,13 @@ Route::prefix('/kategori')->group(function (){
 // Prefix untuk route terkait pengguna (user)
 Route::prefix('/user')->group(function () {
     Route::get('/', [UserController::class, 'index']);
-    Route::get('/tambah', [UserController::class, 'tambah']);
-    Route::post('/tambah_simpan', [UserController::class, 'tambah_simpan']);
-    Route::get('/ubah/{id}', [UserController::class, 'ubah']);
-    Route::put('/ubah_simpan/{id}', [UserController::class, 'ubah_simpan']);
-    Route::get('/hapus/{id}', [UserController::class, 'hapus']);
+    Route::post('/list', [UserController::class, 'list']);
+    Route::get('/create', [UserController::class, 'create']);
+    Route::post('/', [UserController::class, 'store']);
+    Route::get('/{id}', [UserController::class, 'show']);
+    Route::get('/{id}/edit', [UserController::class, 'edit']);
+    Route::put('/{id}', [UserController::class, 'update']);
+    Route::delete('/{id}', [UserController::class, 'destroy']);
 });
 
 // prefix level

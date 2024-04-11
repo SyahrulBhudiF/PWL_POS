@@ -72,4 +72,56 @@ class WelcomeController extends Controller
 ```
 - Hasil <br>
 ![img.png](public/ss/js7(2).png)<br>
-- 
+
+## C. Implementasi jQuery Datatable
+- Modifikasi Route
+```php
+Route::prefix('/user')->group(function () {
+    Route::get('/', [UserController::class, 'index']);
+    Route::get('/list', [UserController::class, 'list']);
+    Route::get('/create', [UserController::class, 'create']);
+    Route::post('/', [UserController::class, 'store']);
+    Route::get('/{id}', [UserController::class, 'show']);
+    Route::put('/{id}', [UserController::class, 'update']);
+    Route::delete('/{id}', [UserController::class, 'destroy']);
+});
+```
+- Modifikasi UserController
+```php
+function index()
+    {
+        $breadcrumb = (object)[
+            'title' => 'Daftar User',
+            'list' => ['Home', 'User']
+        ];
+
+        $page = (object)[
+            'title' => 'Daftar user yang terdaftar dalam sistem'
+        ];
+
+        $activeMenu = 'user';
+
+        return view('user.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu]);
+    }
+```
+- Hasil<br>
+![img.png](public/ss/js(7).3.1.png)
+- Create <br>
+![img.png](public/ss/js7.3.2.png)
+- Hasil create<br>
+![img.png](public/ss/js7.3.3.png)
+> Disini saya menambahkan pelanggan12 dengan nama Ahmad Soerjo dan hasilnya sukses tersimpan di database
+- Hasil show<br>
+![img.png](public/ss/js7.3.4.png)
+> Hasilnya sesuai, data user ditampilkan dengan benar
+- Hasil edit<br>
+![img.png](public/ss/js7.3.6.png)<br>
+![img.png](public/ss/js7.3.7.png)<br>
+> Disini saya mengganti nama dari pelanggan12 menjadi Ahmad Soerjo Raharjo dan berhasil
+- Hasil delete<br>
+![img.png](public/ss/js7.3.8.png)<br>
+>Disini saya mencoba menghapus manager 56<br>
+
+<br>![img.png](public/ss/js7.3.9.png)<br>
+> Hasilnya user manager 56 berhasil di hapus
+
