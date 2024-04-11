@@ -5,10 +5,14 @@
 > Kelas : TI-2F
 
 ## A. Layouting AdminLTE
+
 - Hasil akhir template.blade.php<br>
-![img.png](public/ss/js7(1).png)<br>
+  ![img.png](public/ss/js7(1).png)<br>
+
 ## B. Penerapan Layouting
+
 - Welcome Controller
+
 ```php
 <?php
 
@@ -31,7 +35,9 @@ class WelcomeController extends Controller
 	}
 }
 ```
-- Welcome.blade 
+
+- Welcome.blade
+
 ```php
 @extends('layouts.template')
 
@@ -47,7 +53,9 @@ class WelcomeController extends Controller
     </div>
 @endsection
 ```
+
 - Modifikasi breadcrumb blade
+
 ```php
 <section class="content-header">
     <div class="container-fluid">
@@ -70,11 +78,14 @@ class WelcomeController extends Controller
     </div><!-- /.container-fluid -->
 </section>
 ```
+
 - Hasil <br>
-![img.png](public/ss/js7(2).png)<br>
+  ![img.png](public/ss/js7(2).png)<br>
 
 ## C. Implementasi jQuery Datatable
+
 - Modifikasi Route
+
 ```php
 Route::prefix('/user')->group(function () {
     Route::get('/', [UserController::class, 'index']);
@@ -86,7 +97,9 @@ Route::prefix('/user')->group(function () {
     Route::delete('/{id}', [UserController::class, 'destroy']);
 });
 ```
+
 - Modifikasi UserController
+
 ```php
 function index()
     {
@@ -104,24 +117,45 @@ function index()
         return view('user.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu]);
     }
 ```
+
 - Hasil<br>
-![img.png](public/ss/js(7).3.1.png)
+  ![img.png](public/ss/js(7).3.1.png)
 - Create <br>
-![img.png](public/ss/js7.3.2.png)
+  ![img.png](public/ss/js7.3.2.png)
 - Hasil create<br>
-![img.png](public/ss/js7.3.3.png)
+  ![img.png](public/ss/js7.3.3.png)
+
 > Disini saya menambahkan pelanggan12 dengan nama Ahmad Soerjo dan hasilnya sukses tersimpan di database
+
 - Hasil show<br>
-![img.png](public/ss/js7.3.4.png)
+  ![img.png](public/ss/js7.3.4.png)
+
 > Hasilnya sesuai, data user ditampilkan dengan benar
+
 - Hasil edit<br>
-![img.png](public/ss/js7.3.6.png)<br>
-![img.png](public/ss/js7.3.7.png)<br>
+  ![img.png](public/ss/js7.3.6.png)<br>
+  ![img.png](public/ss/js7.3.7.png)<br>
+
 > Disini saya mengganti nama dari pelanggan12 menjadi Ahmad Soerjo Raharjo dan berhasil
+
 - Hasil delete<br>
-![img.png](public/ss/js7.3.8.png)<br>
->Disini saya mencoba menghapus manager 56<br>
+  ![img.png](public/ss/js7.3.8.png)<br>
+
+> Disini saya mencoba menghapus manager 56<br>
 
 <br>![img.png](public/ss/js7.3.9.png)<br>
 > Hasilnya user manager 56 berhasil di hapus
 
+## D. Data Searching and Filtering
+- Hasil filtering <br>
+![img.png](public/ss/js7.3.10.png)
+
+## E. Pertanyaan
+1. Apa perbedaan frontend template dengan backend template?
+>
+2. Apakah layouting itu penting dalam membangun sebuah website?
+>
+3. Jelaskan fungsi dari komponen laravel blade berikut : @include(), @extend(), @section(), @push(), @yield(), dan @stack()
+>
+4. Apa fungsi dan tujuan dari variable $activeMenu ?
+>
