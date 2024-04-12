@@ -30,7 +30,7 @@
                     </div>
                 </div>
             </div>
-            <table class="table table-bordered table-striped table-hover table-sm" id="table_user">
+            <table class="table table-bordered table-striped table-hover table-sm w-100" id="table_user">
                 <thead>
                 <tr>
                     <th>ID</th>

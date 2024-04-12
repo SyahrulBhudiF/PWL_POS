@@ -180,3 +180,5 @@ function index()
 
 > variabel tersebut digunakan untuk menentukan style yang akan digunakan di bagian sidebar atau dalam kata lain
 > digunakan untuk menampilkan menu yang sedang di pilih saat ini 
+
+## F. Tugas
