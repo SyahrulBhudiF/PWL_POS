@@ -168,17 +168,14 @@ function index()
 3. Jelaskan fungsi dari komponen laravel blade berikut : @include(), @extend(), @section(), @push(), @yield(), dan
    @stack()
 
-> @include('view'): Digunakan untuk menyisipkan konten dari file view lain ke dalam view saat ini.
-> @extend('layout'): Digunakan untuk mengambil layout utama yang akan digunakan oleh view saat ini.
-> @section('content'): Digunakan untuk menentukan bagian konten dari sebuah layout.
-> @push('scripts'): Digunakan untuk menambahkan script baru ke dalam sebuah stack, biasanya digunakan untuk menambahkan
-> script pada bagian bawah halaman.
-> @yield('section'): Digunakan untuk menampilkan konten dari sebuah section yang telah didefinisikan di layout.
-> @stack('scripts'): Digunakan untuk menampilkan stack tertentu yang telah didefinisikan di layout.
+> @include('view'): Digunakan untuk menyisipkan konten dari file view lain ke dalam view saat ini.<br>
+> @extend('layout'): Digunakan untuk mengambil layout utama yang akan digunakan oleh view saat ini.<br>
+> @section('content'): Digunakan untuk menentukan bagian konten dari sebuah layout.<br>
+> @push('scripts'): Digunakan untuk menambahkan script baru ke dalam sebuah stack, biasanya digunakan untuk menambahkan script pada bagian bawah halaman. <br>
+> @yield('section'): Digunakan untuk menampilkan konten dari sebuah section yang telah didefinisikan di layout.<br>
+> @stack('scripts'): Digunakan untuk menampilkan stack tertentu yang telah didefinisikan di layout.<br>
 
 4. Apa fungsi dan tujuan dari variable $activeMenu ?
 
 > variabel tersebut digunakan untuk menentukan style yang akan digunakan di bagian sidebar atau dalam kata lain
 > digunakan untuk menampilkan menu yang sedang di pilih saat ini 
-
-## F. Tugas
