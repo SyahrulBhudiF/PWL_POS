@@ -43,15 +43,9 @@ Route::prefix('/user')->group(function () {
     Route::delete('/{id}', [UserController::class, 'destroy']);
 });
 
-// prefix level
-Route::prefix('/level')->group(function () {
-    Route::get('/', [LevelController::class, 'index']);
-    Route::get('/create', [LevelController::class, 'create']);
-    Route::post('/', [LevelController::class, 'store']);
-    Route::get('/edit/{id}', [LevelController::class, 'edit'])->name('level.edit');
-    Route::put('/update/{id}', [LevelController::class, 'update'])->name('level.update');
-    Route::get('/delete/{id}', [LevelController::class, 'destroy'])->name('level.delete');
-});
 
 // Route resource m_user
 Route::resource('m_user', POSController::class);
+
+Route::resource('level', LevelController::class);
+Route::post('/level/list', [LevelController::class, 'list']);

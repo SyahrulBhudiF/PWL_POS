@@ -1,43 +1,45 @@
-@extends('layouts.app')
-
-{{-- Customize layout sections --}}
-@section('subtitle', 'Level')
-@section('content_header_title', 'Level')
-@section('content_header_subtitle', 'Create')
-
-{{-- Content body: main page content --}}
+@extends('layouts.template')
 @section('content')
-    <div class="container">
-        <div class="card card-primary">
-            <div class="card-header">
-                <h3 class="card-title">Buat Level baru</h3>
-            </div>
-
-            <form method="post" action="../level">
-                {{ csrf_field() }}
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="level_kode">Kode Level</label>
-                        <input type="text" class=" form-control" id="level_kode" name="level_kode"
-                            placeholder="Contoh : Mng-jkt">
+    <div class="card card-outline card-primary">
+        <div class="card-header">
+            <h3 class="card-title">{{ $page->title }}</h3>
+            <div class="card-tools"></div>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="{{ url('level') }}" class="form-horizontal">
+                @csrf
+                <div class="form-group row">
+                    <label class="col-1 control-label col-form-label">Level Kode</label>
+                    <div class="col-11">
+                        <input type="text" class="form-control" id="level_kode" name="level_kode"
+                               value="{{ old('level_kode') }}" placeholder="CUS" required>
                         @error('level_kode')
-                            <div class="alert alert-danger mt-2">{{ $message }}</div>
+                        <small class="form-text text-danger">{{ $message }}</small>
                         @enderror
-                    </div>
-                    <div class="form-group">
-                        <label for="level_nama">Nama Level</label>
-                        <input type="text" class="form-control" id="level_nama" name="level_nama"
-                            placeholder="Contoh : Manager Jakarta">
-                        @error('level_nama')
-                            <div class="alert alert-danger mt-2">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </div>
+                <div class="form-group row">
+                    <label class="col-1 control-label col-form-label">Level Name</label>
+                    <div class="col-11">
+                        <input type="text" class="form-control" id="level_nama" name="level_nama"
+                               value="{{ old('level_nama') }}" placeholder="Customer" required>
+                        @error('level_nama')
+                        <small class="form-text text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-1 control-label col-form-label"></label>
+                    <div class="col-11">
+                        <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
+                        <a class="btn btn-sm btn-default ml-1" href="{{ url('level')}}">Kembali</a>
+                    </div>
+                </div>
+            </form>
         </div>
-        </form>
     </div>
 @endsection
+@push('css')
+@endpush
+@push('js')
+@endpush
