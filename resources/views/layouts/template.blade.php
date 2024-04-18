@@ -20,7 +20,7 @@
 
     @stack('css')
 </head>
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini overflow-hidden">
 <!-- Site wrapper -->
 <div class="wrapper">
     {{--    Navbar --}}

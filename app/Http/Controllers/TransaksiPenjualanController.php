@@ -35,9 +35,9 @@ class TransaksiPenjualanController extends Controller
         return view('penjualan.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'users' => $users, 'activeMenu' => $activeMenu]);
     }
 
-    /*
-     * Display list of items
-     * */
+    /**
+     * Display list table of items.
+     */
     public function list(Request $request)
     {
         $penjualan = Penjualan::with('user');

@@ -31,6 +31,9 @@ class BarangController extends Controller
         return view('barang.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'kategori' => $kategoris, 'activeMenu' => $activeMenu]);
     }
 
+    /**
+     * Display list table of items.
+     */
     function list(Request $request)
     {
         $barang = Barang::select(['barang_id', 'kategori_id', 'barang_kode', 'barang_nama', 'harga_beli', 'harga_jual'])->with('kategori');

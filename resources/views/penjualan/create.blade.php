@@ -60,7 +60,7 @@
                 <div class="form-group row">
                     <label class="col-11 control-label col-form-label text-center">- Detail Penjualan -</label>
                 </div>
-                <div id="details">
+                <div id="details" style="height: 25vh; overflow-y: auto; overflow-x: hidden">
                     <div class="detail-penjualan">
                         <div class="form-group row">
                             <label class="col-1 control-label col-form-label">Nama Barang</label>
@@ -89,7 +89,7 @@
                     </div>
                 </div>
 
-                <div class="form-group row">
+                <div class="form-group row mt-3">
                     <div class="col-11 offset-1">
                         <button type="button" class="btn btn-success btn-sm" id="add-detail">Tambah Detail Penjualan
                         </button>

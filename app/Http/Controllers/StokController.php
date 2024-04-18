@@ -32,6 +32,9 @@ class StokController extends Controller
         return view('stok.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'barangs' => $barangs, 'activeMenu' => $activeMenu]);
     }
 
+    /**
+     * Display list table of items.
+     */
     function list(Request $request)
     {
         $stok = Stok::with('barang', 'user');
