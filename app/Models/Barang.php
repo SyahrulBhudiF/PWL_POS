@@ -27,6 +27,11 @@ class Barang extends Model
 
     function stok(): HasMany
     {
-        return $this->hasMany(StokModel::class, 'barang_id', 'barang_id');
+        return $this->hasMany(Stok::class, 'barang_id', 'barang_id');
+    }
+
+    function penjualanDetail(): HasMany
+    {
+        return $this->hasMany(PenjualanDetail::class, 'barang_id', 'barang_id');
     }
 }

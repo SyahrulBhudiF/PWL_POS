@@ -29,4 +29,9 @@ class User extends Model
     {
         return $this->hasMany(Stok::class, 'user_id', 'user_id');
     }
+
+    function penjualan(): HasMany
+    {
+        return $this->hasMany(Penjualan::class, 'user_id', 'user_id');
+    }
 }
