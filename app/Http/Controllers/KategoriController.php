@@ -2,64 +2,164 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\KategoriDataTable;
-use App\Http\Requests\StorePostRequest;
-use App\Http\Requests\UpdatePostRequest;
 use App\Models\Kategori;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class KategoriController extends Controller
 {
     /**
-     * Shows all kategori
+     * Display a listing of the resource.
      */
-    function index(KategoriDataTable $dataTable)
+    public function index()
     {
-        return $dataTable->render('kategori.index');
+        $breadcrumb = (object)[
+            'title' => 'Daftar Kategori',
+            'list' => ['Home', 'Kategori']
+        ];
+
+        $page = (object)[
+            'title' => 'Daftar Kategori yang terdaftar dalam sistem'
+        ];
+
+        $activeMenu = 'kategori';
+
+        return view('kategori.index', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu]);
     }
 
     /**
-     * Return Create kategori page
+     * Display list table of items.
      */
-    function create()
+    function list(Request $request)
     {
-        return view('kategori.create');
+        $kategori = Kategori::select('kategori_id', 'kategori_kode', 'kategori_nama');
+
+        return DataTables::of($kategori)
+            ->addIndexColumn()
+            ->addColumn('aksi', function ($kategori) {
+                $btn = '<a href="' . url('/kategori/' . $kategori->kategori_id) . '" class="btn btn-info btn-sm mx-2">Detail</a> ';
+                $btn .= '<a href="' . url('/kategori/' . $kategori->kategori_id . '/edit') . '" class="btn btn-warning btn-sm mx-2">Edit</a> ';
+                $btn .= '<form class="d-inline-block mx-2" method="POST" action="' .
+                    url('/kategori/' . $kategori->kategori_id) . '">'
+                    . csrf_field() . method_field('DELETE') .
+                    '<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm(\'Apakah Anda yakit menghapus data ini?\');">Hapus</button></form>';
+                return $btn;
+            })
+            ->rawColumns(['aksi'])
+            ->editColumn('kategori_id', '')
+            ->make(true);
+    }
+
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        $breadcrumb = (object)[
+            'title' => 'Tambah Kategori',
+            'list' => ['Home', 'Kategori', 'Tambah']
+        ];
+
+        $page = (object)[
+            'title' => 'Tambah kategori baru'
+        ];
+
+        $activeMenu = 'kategori';
+
+        return view('kategori.create', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu]);
     }
 
     /**
-     * Create a new row from input req form
+     * Store a newly created resource in storage.
      */
-    function store(StorePostRequest $request)
+    public function store(Request $request)
     {
-        $validated = $request->safe()->only(['kategori_kode', 'kategori_nama']);
+        $request->validate([
+            'kategori_kode' => 'required|string|min:4|unique:m_kategori,kategori_kode',
+            'kategori_nama' => 'required|string|max:100',
+        ]);
 
-        Kategori::create($validated);
-        return redirect('/kategori');
+        Kategori::create($request->only(['kategori_kode', 'kategori_nama']));
+
+        return redirect('/kategori')->with('success', 'Data kategori berhasil disimpan');
     }
 
     /**
-     * Return to edit page
+     * Display the specified resource.
      */
-    function edit($id)
+    public function show(string $id)
     {
-        return view('kategori.edit', ['data' => Kategori::find($id)]);
+        $kategori = Kategori::find($id);
+
+        $breadcrumb = (object)[
+            'title' => 'Detail Kategori',
+            'list' => ['Home', 'Kategori', 'Detail']
+        ];
+
+        $page = (object)[
+            'title' => 'Detail kategori'
+        ];
+
+        $activeMenu = 'kategori';
+
+        return view('kategori.show', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu, 'kategori' => $kategori]);
     }
 
     /**
-     * Update kategori data
+     * Show the form for editing the specified resource.
      */
-    public function update(UpdatePostRequest $request, $id)
+    public function edit(string $id)
     {
-        $validated = $request->safe()->only(['kategori_kode', 'kategori_nama']);
-        Kategori::find($id)->update($validated);
+        $kategori = Kategori::find($id);
 
-        return redirect('/kategori');
+        $breadcrumb = (object)[
+            'title' => 'Edit Kategori',
+            'list' => ['Home', 'Kategori', 'Edit']
+        ];
+
+        $page = (object)[
+            'title' => 'Edit kategori'
+        ];
+
+        $activeMenu = 'kategori';
+
+        return view('kategori.edit', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu, 'kategori' => $kategori]);
     }
 
-    function destroy($id)
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
     {
-        Kategori::find($id)->delete();
+        $request->validate([
+            'kategori_kode' => 'string|min:3',
+            'kategori_nama' => 'string|max:100',
+        ]);
 
-        return redirect('/kategori');
+        Kategori::find($id)->update($request->only(['kategori_kode', 'kategori_nama']));
+
+        return redirect('/kategori')->with('success', 'Data kategori berhasil diubah');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        $kategori = Kategori::find($id);
+
+        if (!$kategori) {
+            return redirect('/kategori')->with('error', 'Data kategori tidak ditemukan');
+        }
+
+        try {
+            $kategori->delete();
+
+            return redirect('/kategori')->with('success', 'Data kategori berhasil dihapus');
+        } catch (QueryException $e) {
+            return redirect('/kategori')->with('error', 'Data kategori gagal dihapus karena masih terdapat tabel lain yang terkait dengan data ini');
+        }
     }
 }
