@@ -31,7 +31,7 @@ class UserController extends Controller
 
     function list(Request $request)
     {
-        $users = User::select('user_id', 'username', 'nama', 'level_id')->with('level');
+        $users = User::select(['user_id', 'username', 'nama', 'level_id'])->with('level');
 
 //        filter
         if ($request->level_id) $users->where('level_id', $request->level_id);

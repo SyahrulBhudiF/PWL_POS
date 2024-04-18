@@ -33,7 +33,7 @@ class KategoriController extends Controller
      */
     function list(Request $request)
     {
-        $kategori = Kategori::select('kategori_id', 'kategori_kode', 'kategori_nama');
+        $kategori = Kategori::select(['kategori_id', 'kategori_kode', 'kategori_nama']);
 
         return DataTables::of($kategori)
             ->addIndexColumn()

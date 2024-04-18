@@ -5,6 +5,7 @@ use App\Http\Controllers\LevelController;
 use App\Http\Controllers\POSController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\BarangController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,3 +42,6 @@ Route::post('/level/list', [LevelController::class, 'list']);
 
 Route::resource('kategori', KategoriController::class);
 Route::post('/kategori/list', [KategoriController::class, 'list']);
+
+Route::resource('barang', BarangController::class);
+Route::post('/barang/list', [BarangController::class, 'list']);

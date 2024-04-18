@@ -34,7 +34,7 @@ class LevelController extends Controller
      */
     function list(Request $request)
     {
-        $level = Level::select('level_id', 'level_kode', 'level_nama');
+        $level = Level::select(['level_id', 'level_kode', 'level_nama']);
 
         return DataTables::of($level)
             ->addIndexColumn()
