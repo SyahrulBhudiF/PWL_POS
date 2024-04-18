@@ -17,7 +17,7 @@ class Level extends Model
 
     protected $guarded = [];
 
-    public function user()
+    function user()
     {
         return $this->hasMany(User::class, 'level_id', 'level_id');
     }

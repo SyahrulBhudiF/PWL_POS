@@ -3,6 +3,7 @@
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\POSController;
+use App\Http\Controllers\StokController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\BarangController;
@@ -45,3 +46,6 @@ Route::post('/kategori/list', [KategoriController::class, 'list']);
 
 Route::resource('barang', BarangController::class);
 Route::post('/barang/list', [BarangController::class, 'list']);
+
+Route::resource('stok', StokController::class);
+Route::post('/stok/list', [StokController::class, 'list']);

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @mixin IdeHelperUser
@@ -22,5 +23,10 @@ class User extends Model
     function level(): BelongsTo
     {
         return $this->belongsTo(Level::class, 'level_id', 'level_id');
+    }
+
+    function stok(): HasMany
+    {
+        return $this->hasMany(Stok::class, 'user_id', 'user_id');
     }
 }

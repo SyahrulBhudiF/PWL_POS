@@ -20,8 +20,13 @@ class Barang extends Model
 
     protected $guarded = 'barang_id';
 
-    public function kategori(): BelongsTo
+    function kategori(): BelongsTo
     {
         return $this->belongsTo(Kategori::class, 'kategori_id', 'kategori_id');
+    }
+
+    function stok(): HasMany
+    {
+        return $this->hasMany(StokModel::class, 'barang_id', 'barang_id');
     }
 }
