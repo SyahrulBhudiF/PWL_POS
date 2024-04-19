@@ -66,9 +66,15 @@ class KategoriController extends Controller
             'title' => 'Tambah kategori baru'
         ];
 
+        $kategori = Kategori::orderBy('created_at', 'desc')->first();
+
+        $numericPart = substr($kategori->kategori_kode, 3);
+        $numericPart++;
+        $newCode = "AOC" . $numericPart;
+
         $activeMenu = 'kategori';
 
-        return view('kategori.create', ['breadcrumb' => $breadcrumb, 'page' => $page, 'activeMenu' => $activeMenu]);
+        return view('kategori.create', ['breadcrumb' => $breadcrumb, 'kode' => $newCode, 'page' => $page, 'activeMenu' => $activeMenu]);
     }
 
     /**

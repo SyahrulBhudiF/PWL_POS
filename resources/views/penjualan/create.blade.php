@@ -30,7 +30,7 @@
                     <label class="col-1 control-label col-form-label">Kode Penjualan</label>
                     <div class="col-11">
                         <input type="text" class="form-control" id="penjualan_kode" name="penjualan_kode"
-                               value="{{ old('penjualan_kode') }}" required>
+                               value="{{ $kode }}" required>
                         @error('penjualan_kode')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror

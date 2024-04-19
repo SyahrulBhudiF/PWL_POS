@@ -75,7 +75,15 @@ class BarangController extends Controller
         $kategori = Kategori::all();
         $activeMenu = 'barang';
 
-        return view('barang.create', ['breadcrumb' => $breadcrumb, 'page' => $page, 'kategori' => $kategori, 'activeMenu' => $activeMenu]);
+        $barang = Barang::orderBy('barang_id', 'desc')->first();
+
+//        dd($barang->barang_kode);
+
+        $numericPart = substr($barang->barang_kode, 3);
+        $numericPart++;
+        $newCode = "BRG" . $numericPart;
+
+        return view('barang.create', ['breadcrumb' => $breadcrumb, 'kode' => $newCode, 'page' => $page, 'kategori' => $kategori, 'activeMenu' => $activeMenu]);
     }
 
     /**

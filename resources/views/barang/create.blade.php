@@ -26,7 +26,7 @@
                     <label class="col-1 control-label col-form-label">Kode Barang</label>
                     <div class="col-11">
                         <input type="text" class="form-control" id="barang_kode" name="barang_kode"
-                               value="{{ old('barang_kode') }}" placeholder="BRG1" required>
+                               value="{{ $kode }}" placeholder="BRG1" required>
                         @error('barang_kode')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror

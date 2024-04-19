@@ -12,7 +12,7 @@
                     <label class="col-1 control-label col-form-label">Kategori Kode</label>
                     <div class="col-11">
                         <input type="text" class="form-control" id="kategori_kode" name="kategori_kode"
-                               value="{{ old('kategori_kode') }}" placeholder="AOC1" required>
+                               value="{{ $kode }}" placeholder="AOC1" required>
                         @error('kategori_kode')
                         <small class="form-text text-danger">{{ $message }}</small>
                         @enderror

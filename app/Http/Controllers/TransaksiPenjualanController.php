@@ -80,10 +80,15 @@ class TransaksiPenjualanController extends Controller
 
         $barangs = Barang::all();
         $users = User::all();
+        $penjualan = Penjualan::orderBy('penjualan_tanggal', 'desc')->first();
+
+        $numericPart = substr($penjualan->penjualan_kode, 4);
+        $numericPart++;
+        $newPenjualanCode = "SELL" . $numericPart;
 
         $activeMenu = 'penjualan';
 
-        return view('penjualan.create', ['breadcrumb' => $breadcrumb, 'page' => $page, 'barangs' => $barangs, 'users' => $users, 'activeMenu' => $activeMenu]);
+        return view('penjualan.create', ['breadcrumb' => $breadcrumb, 'page' => $page, 'barangs' => $barangs, 'kode' => $newPenjualanCode, 'users' => $users, 'activeMenu' => $activeMenu]);
     }
 
     /**
