@@ -61,7 +61,7 @@
                     <label class="col-11 control-label col-form-label text-center">- Detail Penjualan -</label>
                 </div>
                 <div id="details" style="height: 25vh; overflow-y: auto; overflow-x: hidden">
-                    <div class="detail-penjualan">
+                    <div class="detail-penjualan0 mb-2">
                         <div class="form-group row">
                             <label class="col-1 control-label col-form-label">Nama Barang</label>
                             <div class="col-11">
@@ -71,7 +71,7 @@
                                         <option value="{{ $item->barang_id }}">{{ $item->barang_nama }}</option>
                                     @endforeach
                                 </select>
-                                @error('barang_id.*') <!-- Notice the .* to validate each element of array -->
+                                @error('barang_id.*')
                                 <small class="form-text text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
@@ -81,11 +81,13 @@
                             <div class="col-11">
                                 <input type="text" class="form-control" name="jumlah[]" value="{{ old('jumlah') }}"
                                        required>
-                                @error('jumlah.*') <!-- Notice the .* to validate each element of array -->
+                                @error('jumlah.*')
                                 <small class="form-text text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
                         </div>
+                        <button type="button" class="btn btn-danger btn-sm" onclick="removeData(0)">Hapus
+                        </button>
                     </div>
                 </div>
 
@@ -99,7 +101,7 @@
                 <div class="form-group row">
                     <div class="col-11 offset-1">
                         <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
-                        <a class="btn btn-sm btn-default ml-1" href="{{ url('barang') }}">Kembali</a>
+                        <a class="btn btn-sm btn-default ml-1" href="{{ url('penjualan') }}">Kembali</a>
                     </div>
                 </div>
             </form>
@@ -109,11 +111,16 @@
 
 @push('js')
     <script>
+        function removeData(id) {
+            $('.detail-penjualan' + id).remove();
+        }
+
         $(document).ready(function () {
+            let i = 1;
             $('#add-detail').click(function () {
+                i++;
                 let detailPenjualanHtml = `
-                <label class="d-flex justify-content-center">===</label>
-            <div class="detail-penjualan">
+            <div class="detail-penjualan${i} mb-2">
                 <div class="form-group row">
                     <label class="col-1 control-label col-form-label">Nama Barang</label>
                     <div class="col-11">
@@ -137,6 +144,7 @@
                         @enderror
                 </div>
             </div>
+            <button type="button" class="btn btn-danger btn-sm" onclick="removeData(` + i + `)">Hapus</button>
         </div>
 `;
                 $('#details').append(detailPenjualanHtml);

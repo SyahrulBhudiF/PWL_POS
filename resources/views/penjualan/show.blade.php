@@ -6,17 +6,24 @@
             <h3 class="card-title">{{ $page->title }}</h3>
             <div class="card-tools"></div>
         </div>
-        <div class="card-body">
+        <div class="card-body" style="height: 70vh; overflow-y: auto">
             @empty($details)
                 <div class="alert alert-danger alert-dismissible">
                     <h5><i class="icon fas fa-ban"></i> Kesalahan!</h5> Data yang Anda cari tidak ditemukan.
                 </div>
             @else
+                <table class="table table-bordered table-striped table-hover table-sm mb-4">
+                    <tr>
+                        <th>Total Penjualan</th>
+                        <td>{{$total}}</td>
+                    </tr>
+                </table>
                 @php
                     $no = 1;
                 @endphp
                 @foreach($details as $item)
-                    <label class="col-11 control-label col-form-label text-left">****Detail Penjualan {{$no}}*****</label>
+                    <label class="col-11 control-label col-form-label text-left">****Detail Penjualan {{$no}}
+                        *****</label>
                     <table class="table table-bordered table-striped table-hover table-sm mb-4">
                         <tr>
                             <th>Detail ID</th>

@@ -160,7 +160,12 @@ class TransaksiPenjualanController extends Controller
          */
         $activeMenu = 'penjualan';
 
-        return view('penjualan.show', ['breadcrumb' => $breadcrumb, 'page' => $page, 'details' => $details, 'activeMenu' => $activeMenu]);
+        $totals = 0;
+        foreach ($details as $detail) {
+            $totals += $detail->harga;
+        }
+
+        return view('penjualan.show', ['breadcrumb' => $breadcrumb, 'page' => $page, 'details' => $details, 'total' => $totals, 'activeMenu' => $activeMenu]);
     }
 
     /**
