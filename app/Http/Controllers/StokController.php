@@ -93,7 +93,10 @@ class StokController extends Controller
             'stok_tanggal' => 'required',
         ]);
 
-        Stok::insert($data);
+        $stok = Stok::where('barang_id', $request->barang_id)->first();
+        $data['stok_jumlah'] += $stok->stok_jumlah;
+
+        Stok::where('stok_id', $request->barang_id)->update($data);
 
         return redirect('/stok')->with('success', 'Data barang berhasil disimpan');
     }
