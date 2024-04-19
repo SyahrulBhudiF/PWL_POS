@@ -38,6 +38,7 @@
                     <th>Pembeli</th>
                     <th>Kode</th>
                     <th>Tanggal</th>
+                    <th>Total</th>
                     <th>Aksi</th>
                 </tr>
                 </thead>
@@ -89,6 +90,12 @@
                     },
                     {
                         data: "penjualan_tanggal",
+                        className: "text-center",
+                        orderable: true,    // orderable: true, if we want this column is orderable
+                        searchable: true,   // searchable: true, if we want this column searchable
+                    },
+                    {
+                        data: "total",
                         className: "text-center",
                         orderable: true,    // orderable: true, if we want this column is orderable
                         searchable: true,   // searchable: true, if we want this column searchable

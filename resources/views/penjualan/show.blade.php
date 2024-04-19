@@ -14,7 +14,7 @@
             @else
                 <table class="table table-bordered table-striped table-hover table-sm mb-4">
                     <tr>
-                        <th>Total Penjualan</th>
+                        <th>Total Keseluruhan</th>
                         <td>{{$total}}</td>
                     </tr>
                 </table>
@@ -38,7 +38,7 @@
                             <td>{{ $item->barang->barang_nama }}</td>
                         </tr>
                         <tr>
-                            <th>Harga</th>
+                            <th>Sub Total</th>
                             <td>{{ $item->harga }}</td>
                         </tr>
                         <tr>

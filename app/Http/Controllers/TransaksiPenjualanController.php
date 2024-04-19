@@ -46,6 +46,10 @@ class TransaksiPenjualanController extends Controller
 
         return DataTables::of($penjualan)
             ->addIndexColumn()
+            ->addColumn('total', function ($penjualan) {
+                $totalHarga = PenjualanDetail::where('penjualan_id', $penjualan->penjualan_id)->sum('harga');
+                return $totalHarga;
+            })
             ->addColumn('aksi', function ($penjualan) {
                 $btn = '<a href="' . url('/penjualan/' . $penjualan->penjualan_id) . '" class="btn btn-info btn-sm mx-2">Detail</a> ';
                 $btn .= '<a href="' . url('/penjualan/' . $penjualan->penjualan_id . '/edit') . '" class="btn btn-warning btn-sm mx-2">Edit</a> ';

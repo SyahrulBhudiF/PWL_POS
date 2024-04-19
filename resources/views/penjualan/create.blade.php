@@ -149,6 +149,7 @@
 `;
                 $('#details').append(detailPenjualanHtml);
             });
+            $
         });
 
     </script>
