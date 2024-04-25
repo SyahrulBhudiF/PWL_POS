@@ -94,9 +94,14 @@ class StokController extends Controller
         ]);
 
         $stok = Stok::where('barang_id', $request->barang_id)->first();
-        $data['stok_jumlah'] += $stok->stok_jumlah;
 
-        Stok::where('stok_id', $request->barang_id)->update($data);
+        if ($stok) {
+            $stok->stok_jumlah += $request->stok_jumlah;
+            $stok->save();
+
+        } else {
+            Stok::insert($data);
+        }
 
         return redirect('/stok')->with('success', 'Data barang berhasil disimpan');
     }
