@@ -6,11 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Foundation\Auth\User as UserAuthenticate;
 
 /**
  * @mixin IdeHelperUser
  */
-class User extends Model
+class User extends UserAuthenticate
 {
     use HasFactory;
 
