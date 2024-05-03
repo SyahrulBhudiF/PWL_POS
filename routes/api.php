@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\LevelController;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\LogoutController;
 use App\Http\Controllers\Api\RegisterController;
@@ -23,4 +24,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::post('/logout', LogoutController::class)->name('logout');
-
+/**
+ * Route for Api Resource for LevelModel or m_levels Table
+ */
+Route::resource('levels', LevelController::class)->except(['create', 'edit']);
