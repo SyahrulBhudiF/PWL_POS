@@ -18,7 +18,7 @@ class Barang extends Model
 
     protected $primaryKey = 'barang_id';
 
-    protected $guarded = 'barang_id';
+    protected $guarded = ['barang_id'];
 
     function kategori(): BelongsTo
     {
