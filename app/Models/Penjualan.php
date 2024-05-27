@@ -14,7 +14,7 @@ class Penjualan extends Model
     protected $table = 't_penjualan';
     protected $primaryKey = 'penjualan_id';
 
-    protected $guarded = 'penjualan_id';
+    protected $guarded = ['penjualan_id'];
 
     function penjualanDetail(): HasMany
     {

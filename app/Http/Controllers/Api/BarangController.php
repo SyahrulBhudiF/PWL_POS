@@ -24,7 +24,7 @@ class BarangController extends Controller
      */
     public function store(BarangRequest $request): JsonResponse
     {
-        $barang = Barang::create($request->safe()->all());
+        $barang = Barang::create($request->input());
         if (empty($barang)) {
             return response()->json([
                 'success' => false,
@@ -54,7 +54,7 @@ class BarangController extends Controller
      */
     public function update(BarangRequest $request, Barang $barang): JsonResponse
     {
-        $isUpdated = $barang->update($request->safe()->all());
+        $isUpdated = $barang->update($request->input());
 
         if (!$isUpdated) {
             return response()->json([

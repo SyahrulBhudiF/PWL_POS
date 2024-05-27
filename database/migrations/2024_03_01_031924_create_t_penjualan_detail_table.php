@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -19,7 +18,7 @@ return new class extends Migration
             $table->integer('jumlah');
             $table->timestamps();
 
-            $table->foreign('penjualan_id')->references('penjualan_id')->on('t_penjualan');
+            $table->foreign('penjualan_id')->references('penjualan_id')->on('t_penjualan')->cascadeOnDelete();
             $table->foreign('barang_id')->references('barang_id')->on('m_barang');
         });
     }

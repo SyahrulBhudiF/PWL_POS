@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\LevelController;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\LogoutController;
 use App\Http\Controllers\Api\RegisterController;
+use App\Http\Controllers\Api\TransaksiPenjualan;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -52,3 +53,9 @@ Route::resource('barang', BarangController::class)->except(['create', 'edit']);
  * for register with user fill image in form
  */
 Route::post('/register1', RegisterController::class)->name('register1');
+
+
+/**
+ * Route for Api Resource for PenjualanModel and PenjualanDetailModel or Transaksi Barang feature
+ */
+Route::resource('transaksi', TransaksiPenjualan::class)->except(['create', 'edit']);

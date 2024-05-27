@@ -15,7 +15,7 @@ class Stok extends Model
     protected $table = 't_stok';
     protected $primaryKey = 'stok_id';
 
-    protected $guarded = 'stok_id';
+    protected $guarded = ['stok_id'];
 
     function barang(): BelongsTo
     {

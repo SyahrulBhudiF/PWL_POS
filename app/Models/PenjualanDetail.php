@@ -13,7 +13,7 @@ class PenjualanDetail extends Model
     protected $table = 't_penjualan_detail';
     protected $primaryKey = 'detail_id';
 
-    protected $guarded = 'detail_id';
+    protected $guarded = ['detail_id'];
 
     function penjualan(): BelongsTo
     {

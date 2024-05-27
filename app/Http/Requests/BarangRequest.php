@@ -53,4 +53,34 @@ class BarangRequest extends FormRequest
             'errors' => $validator->errors(),
         ], 422));
     }
+
+
+    /**
+     * Handle a passed validation attempt.
+     *
+     * @return void
+     */
+    protected function passedValidation(): void
+    {
+        /**
+         * change file type request that to access using $this->file() method to $this->input()
+         */
+        if ($this->hasFile('image')) {
+            $this->merge([
+                'image' => $this->file('image')->hashName()
+            ]);
+        }
+
+        /**
+         * remove _method that used in postman that sending form/data
+         * using POST HTTP verb but PUT will handle that in laravel,
+         * because other way isn't working, cause laravel cannot
+         * directly sending image or form/data using PUT in postman, so
+         * I'm using POST, but in form/data add _method key with PUT as
+         * value
+         */
+        if (in_array($this->getMethod(), ['PUT', 'PATCH'])) {
+            $this->request->remove('_method');
+        }
+    }
 }
