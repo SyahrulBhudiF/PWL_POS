@@ -47,3 +47,8 @@ Route::resource('kategori', KategoriController::class)->except(['create', 'edit'
  * Route for Api Resource for BarangModel or m_barang Table
  */
 Route::resource('barang', BarangController::class)->except(['create', 'edit']);
+
+/**
+ * for register with user fill image in form
+ */
+Route::post('/register1', RegisterController::class)->name('register1');

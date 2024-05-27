@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -39,7 +40,7 @@ class User extends UserAuthenticate implements JWTSubject
     public $timestamps = false;
     protected $primaryKey = 'user_id';
 
-    protected $fillable = ['user_id', 'level_id', 'username', 'nama', 'password'];
+    protected $fillable = ['level_id', 'username', 'nama', 'password', 'image'];
 
     function level(): BelongsTo
     {
@@ -54,5 +55,12 @@ class User extends UserAuthenticate implements JWTSubject
     function penjualan(): HasMany
     {
         return $this->hasMany(Penjualan::class, 'user_id', 'user_id');
+    }
+
+    public function image(): Attribute
+    {
+        return Attribute::make(
+            get: fn($image) => url('/storage/posts/' . $image)
+        );
     }
 }
