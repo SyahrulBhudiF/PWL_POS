@@ -13,12 +13,17 @@
 </head>
 
 <body>
-<h2>File Upload</h2>
+<h2 class="m-lg-4">File Upload</h2>
 <hr>
 
-<form action="{{url('/file-upload')}}" method="POST" enctype="multipart/form-data">
+<form class="m-lg-4" action="{{url('/file-upload')}}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="mb-3">
+        <label for="berkas_name" class="form-label">Nama Gambar</label>
+        <input type="text" class="form-control" id="berkas_name" name="nama">
+        @error('nama')
+        <div class="text-danger">{{$message}}</div>
+        @enderror
         <label for="berkas" class="form-label">Gambar Profile</label>
         <input type="file" class="form-control" id="berkas" name="berkas">
         @error('berkas')
